@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BaoNguyen094/Ecommerce/issues"
   },
-  "homepage": "https://github.com/BaoNguyen094/Ecommerce#readme"
+  "homepage": "https://github.com/BaoNguyen094/Ecommerce#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
