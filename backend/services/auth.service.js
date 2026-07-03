@@ -2,13 +2,13 @@ const User = require('../models/userModel');
 const Role = require('../models/roleModel');
 const authService = {};
 authService.register = async (data) => {
-    if (!data.name?.strim()) {
+    if (!data.name?.trim()) {
         throw new Error('Name is required');
     }
     if (!data.password) {
         throw new Error('Password is required');
     }
-    if (!data.email?.strim()) {
+    if (!data.email?.trim()) {
         throw new Error('Email is required')
     }
     const existingUser = await User.findOne({ email: data.email });
