@@ -1,38 +1,35 @@
 const User = require('../models/userModel');
+const Role = require('../models/roleModel');
 const authService = {};
 authService.register = async (data) => {
-    if (!data.name) {
+    if (!data.name?.strim()) {
         throw new Error('Name is required');
     }
     if (!data.password) {
         throw new Error('Password is required');
     }
-    if (!data.email) {
+    if (!data.email?.strim()) {
         throw new Error('Email is required')
     }
-    const emailValid = await User.findOne({ email: data.email });
-    if (emailValid) {
+    const existingUser = await User.findOne({ email: data.email });
+    if (existingUser) {
         throw new Error('Email already exists');
     }
+    const role = await Role.findOne({ name: 'customer' });
     if (!role) {
-        throw new Error('Role is required')
+        throw new Error('Customer role is not found! ')
     }
     const user = await User.create({
         name: data.name,
         email: data.email,
         password: data.password,
-        role: data.role
+        role: role._id
     });
-    if (user) {
-        const userInfo = await User.findById(user._id).populate('role');
-        return {
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            role: userInfo.role.name
-        }
+    return {
+        _id: user._id,
+        name: user.name,
+        email: user.email
     }
-    else { throw new Error('Register failse') }
 };
 
 module.exports = authService;
