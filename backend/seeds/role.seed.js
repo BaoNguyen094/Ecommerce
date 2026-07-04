@@ -9,7 +9,7 @@ const seedRole = async () => {
     for (const role of roles) {
         await Role.updateOne(
             { name: role.name },
-            { $set: role },
+            { $set: role },//set tập trung vào trường mình muốn update
             {
                 upsert: true
             }
