@@ -47,14 +47,13 @@ authService.login = async (data) => {
     if (!checkPassword) {
         throw new Error('Password is not correct!');
     }
-    const role = await Role.findById(user.role);
     return {
         _id: user._id,
         name: user.name,
         avatar: user.avata,
         email: user.email,
         role: user.role.name,
-        token: generateToken({ id: user._id, role: role.name }),
+        token: generateToken({ id: user._id, role: user.role.name }),
     }
 };
 

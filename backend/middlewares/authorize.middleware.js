@@ -4,7 +4,7 @@ const authorize = (...roles) => {
             return next();
         }
         else {
-            return res.status(403).json({ message: 'Forbidden' });
+            return res.status(403).json({ message: 'Forbidden!' });
         }
     }
 }
