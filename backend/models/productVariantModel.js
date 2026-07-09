@@ -18,7 +18,7 @@ const productVariantSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    countInstock: {
+    stock: {
         type: Number,
         default: 0,
         min: 0

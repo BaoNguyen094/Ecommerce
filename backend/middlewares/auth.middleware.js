@@ -6,7 +6,6 @@ const protect = async (req, res, next) => {
         return res.status(401).json({ message: 'Not login!' });
     }
     const token = authHeader.split(' ')[1];
-    console.log(token);
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRETKEY);
         const user = await User.findById(payload.id).select('_id name email avatar isActive role').populate('role');
