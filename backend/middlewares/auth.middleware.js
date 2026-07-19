@@ -17,8 +17,7 @@ const protect = async (req, res, next) => {
         }
         req.user = {
             _id: user._id,
-            role: user.role.name,
-            isActive: user.isActive
+            role: user.role.name
         };
         next();
     } catch (err) {
